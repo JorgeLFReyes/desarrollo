@@ -1,0 +1,255 @@
+:root {
+  --bg-opacity-color: #27272775;
+  --background-image: radial-gradient(#96d1a7, #5ff578);
+  --boton-primary-color: #3dc9b3;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0.1rem;
+}
+
+.slides {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.slide {
+  width: 100%;
+  min-height: 100vh;
+  scroll-snap-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide:not(.slide:first-of-type) {
+  /* font-family: url(Raleway-VariableFont_wght.ttf), sans-serif; */
+  font-family: "Raleway", sans-serif;
+}
+
+.container:first-of-type {
+  background-image: var(--background-image);
+  text-align: center;
+}
+
+.container span {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 9vw;
+  margin: 0;
+  letter-spacing: 0.5rem;
+  background-image: url(nature.jpeg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-attachment: fixed;
+  text-shadow: 0 0 1px #0004;
+}
+
+.container span:nth-child(3) {
+  font-size: 3vw;
+  text-shadow: 0 0 1px #0006;
+}
+
+.container-grid {
+  width: 90%;
+  height: inherit;
+  display: grid;
+  grid-template-columns: repeat(3, 25%);
+  justify-content: space-evenly;
+}
+
+.container-article {
+  position: relative;
+  height: 50vh;
+  box-shadow: 5px 5px 1rem 1px #0006;
+  border-radius: 1rem;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.container-article img {
+  height: 80%;
+  object-fit: cover;
+}
+
+.container-article:hover {
+  transform: scale(1.05);
+}
+
+.modal {
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background-color: var(--bg-opacity-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 1s;
+}
+
+.modal[id|="tarjeta"]:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes escala {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.modal[id|="tarjeta"]:target .modal-content {
+  transform: scale(1);
+  /* animation: escala 1s both; */
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 1rem;
+  position: relative;
+  width: 80%;
+  min-height: 70%;
+  transform: scale(0);
+  transition: transform 1s;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  pointer-events: auto;
+}
+
+.modal-close svg {
+  width: 3rem;
+  height: 3rem;
+  fill: var(--boton-primary-color);
+}
+
+.portfoil-modal {
+  box-shadow: 5px 5px 1rem 1px #0006;
+  border-radius: 1rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.portfoil-modal img {
+  width: 40%;
+  height: 70vh;
+  object-fit: cover;
+  object-position: 50%;
+}
+
+.portfoil-info {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  text-align: left;
+  font-family: "Raleway", sans-serif;
+}
+
+.portfoil-info h3 {
+  font-size: 2.3rem;
+  margin: 0;
+  /* width: 250px; */
+  /* text-align: center;
+  border-top: solid medium #3dc9b3;
+  border-bottom: solid medium #3dc9b3; */
+}
+
+.portfoil-info p {
+  font-size: 1.6rem;
+  margin: 1rem auto;
+}
+
+img.posicion-right {
+  object-position: 100%;
+}
+
+.padding {
+  padding: 1rem;
+}
+
+cite {
+  position: relative;
+  font-size: 1.5rem;
+  padding-left: 1rem;
+}
+
+cite::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.5rem;
+  height: 100%;
+  background-color: #3dc9b3;
+}
+
+@media screen and (max-width: 400px) {
+  .container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40%);
+    row-gap: 5%;
+    justify-content: space-evenly;
+  }
+
+  .container-article {
+    height: 40vh;
+    font-size: 0.5rem;
+  }
+
+  .modal-content {
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  .portfoil-modal {
+    flex-direction: column;
+  }
+
+  .portfoil-modal img {
+    width: 100%;
+    height: auto;
+  }
+}
